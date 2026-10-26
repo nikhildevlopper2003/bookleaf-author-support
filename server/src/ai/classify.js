@@ -45,11 +45,8 @@ function extractJson(text) {
   return JSON.parse(text.slice(start, end + 1));
 }
 
-/**
- * Classify and prioritise in one call. Only the subject, a truncated description and the linked
- * book's status are sent; the response is capped at 120 tokens.
- * Returns { category, priority, reasoning, source: 'ai' | 'fallback' }.
- */
+// One call for category + priority. Sends only subject, truncated description and book status.
+// Returns { category, priority, reasoning, source: 'ai' | 'fallback' }.
 export async function classifyTicket({ subject, description, bookStatus }) {
   const text = `${subject}\n${description}`;
   const user = [

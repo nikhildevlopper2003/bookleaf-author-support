@@ -1,10 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { tokenStore } from './api.js';
 
-/**
- * Calls `reload` whenever the server says a ticket changed (Server-Sent Events).
- * EventSource reconnects on its own; a slow poll covers proxies that drop the stream.
- */
+// Calls `reload` when the server reports a ticket change (SSE). The slow poll covers dropped streams.
 export function useLive(reload) {
   const latest = useRef(reload);
   latest.current = reload;

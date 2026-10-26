@@ -33,6 +33,11 @@ function BookCard({ book }) {
             <Stat label="Royalty paid" value={rupees(book.royaltyPaid)} />
             <Stat label="Royalty pending" value={rupees(book.royaltyPending)} tone={book.royaltyPending > 0 ? 'warn' : ''} />
           </div>
+          {book.royaltyPending > 0 && book.royaltyPending < 1000 && (
+            <p className="notice">
+              Pending royalty is below the ₹1,000 minimum payout, so it rolls over to the next quarter.
+            </p>
+          )}
           <p className="muted small">
             Published {formatDate(book.publicationDate)} · Last payout {book.lastPayoutDate ? formatDate(book.lastPayoutDate) : 'none yet'} ·
             Available on {book.availableOn.join(', ')}

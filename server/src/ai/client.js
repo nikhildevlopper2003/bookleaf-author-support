@@ -23,10 +23,7 @@ const getClient = () => {
 
 export const aiConfigured = () => Boolean(config.ai.apiKey);
 
-/**
- * Single choke point for LLM calls. Any failure (no key, timeout, 429, 5xx, empty reply)
- * surfaces as AiUnavailableError so callers can degrade instead of crashing.
- */
+// All LLM calls go through here; any failure becomes AiUnavailableError so callers can degrade.
 export async function complete({ system, user, maxTokens, temperature = 0.2 }) {
   const c = getClient();
   if (!c) throw new AiUnavailableError('ANTHROPIC_API_KEY is not set');

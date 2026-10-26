@@ -153,7 +153,7 @@ Errors always look like `{ "error": { "message": "...", "details": [{ "field", "
 
 - The provided JSON is the source of truth for authors and books. Author emails become logins, with a shared demo password.
 - "Published books" on My Books includes books still in production, clearly marked, so an author can also raise a query about them. MRP and royalties are shown only once published.
-- The **₹ amounts in the seed are used as-is**; I did not recompute `total_royalty_earned`.
+- Royalty figures in the seed are shown as given; nothing is recalculated.
 - Attachments are UI only, as the brief allows. The file picker is there and says plainly that upload is not enabled.
 - "Next payout date" is derived from the KB rule (quarter end + 45 days) from today's date, not from any stored payout schedule.
 - An author reply on a Resolved ticket re-opens it; a Closed ticket is final.
@@ -167,5 +167,5 @@ Errors always look like `{ "error": { "message": "...", "details": [{ "field", "
 - Attachments are not stored.
 - No email notifications to authors when a reply is sent.
 - The draft prompt does not know payment history beyond the dataset fields (no bank-details-linked flag, no per-platform sales), so the model is told to say the team will verify those.
-- Classification accuracy has only been checked on hand-written examples. With more time: a small labelled set and a script that scores category/priority accuracy per prompt change.
+- The classification prompt has not been scored against a labelled set. With more time: a small set of real tickets and a script that reports category/priority accuracy per prompt change.
 - Prompt caching of the static system prompt would trim cost further at higher volume.

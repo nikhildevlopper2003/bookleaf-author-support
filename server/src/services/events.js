@@ -1,4 +1,4 @@
-// Tiny in-memory SSE hub. One process only; swap for Redis pub/sub if we scale out.
+// In-memory SSE hub, so single instance only.
 const clients = new Set();
 
 export function addClient(res, user) {

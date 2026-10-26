@@ -1,5 +1,4 @@
-// Keyword rules used when the LLM is unreachable. Crude on purpose: the goal is that a
-// ticket still lands in a sensible queue, and an admin can correct it.
+// Keyword rules for when the LLM is unreachable. Rough, but the ticket still lands in a sensible queue.
 const CATEGORY_RULES = [
   ['ISBN & Metadata Issues', /\b(isbn|barcode|metadata|wrong book|duplicate)\b/i],
   ['Printing & Quality', /\b(print|printed|misprint|blurry|binding|misaligned|quality|reprint|defect|damaged|colou?r)\b/i],

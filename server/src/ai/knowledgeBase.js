@@ -56,7 +56,7 @@ Query: "I sold 200 copies but only received Rs 3,000." -> Explain the net profit
   'General Inquiry': `Query: "Can I update my book description on Amazon after it's live?" -> Yes, via dashboard or email to the team; changes reflect in 3-5 business days.`,
 };
 
-/** Context block for one category, kept deliberately small. */
+// Only the section for one category, to keep prompts small.
 export function knowledgeFor(category) {
   const key = sections[category] ? category : 'General Inquiry';
   return {

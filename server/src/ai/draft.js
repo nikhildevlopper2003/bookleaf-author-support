@@ -47,7 +47,7 @@ function describeBook(b) {
   return `- ${parts.join('; ')}`;
 }
 
-/** Compact, structured facts about the author. Only the linked book if there is one. */
+// Facts about the linked book, or a short list of all the author's books for account-level tickets.
 function authorData({ author, book, books }) {
   const lines = [`Author: ${author.name}`];
   if (book) {
@@ -66,10 +66,7 @@ function history(messages) {
     .join('\n');
 }
 
-/**
- * Build the user prompt. Context stays small: one KB section (matching the category), one example,
- * the relevant book(s) and the last few thread messages, not the whole KB or ticket history.
- */
+// Prompt carries one KB section, one example, the relevant book(s) and the last few messages only.
 export function buildDraftPrompt({ ticket, author, book, books, messages, today = new Date() }) {
   const kb = knowledgeFor(ticket.category);
   const payout = nextPayoutDate(today);

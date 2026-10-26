@@ -67,8 +67,6 @@ function requireTicket(id) {
   return row;
 }
 
-// ---------- author side ----------
-
 export function createTicket(user, { bookId, subject, description }) {
   let book = null;
   if (bookId) {
@@ -137,8 +135,6 @@ export function addAuthorMessage(user, id, body) {
   publishTicketEvent('ticket.updated', updated);
   return { ...toAuthorView(updated), messages: messagesFor(id) };
 }
-
-// ---------- admin side ----------
 
 const PRIORITY_RANK = `CASE t.priority WHEN 'Critical' THEN 0 WHEN 'High' THEN 1 WHEN 'Medium' THEN 3 WHEN 'Low' THEN 4 ELSE 2 END`;
 
@@ -234,10 +230,7 @@ export function adminReply(admin, id, { body, status }) {
   return getAdminTicket(id);
 }
 
-/**
- * Returns a cached draft when nothing has changed since it was written; otherwise asks the model.
- * Never throws for AI problems: the admin gets { draft: null, aiAvailable: false } and writes manually.
- */
+// Cached until the thread or category changes. AI failures never throw: the admin just gets no draft.
 export async function getDraft(id, { refresh = false } = {}) {
   const row = requireTicket(id);
   const messages = messagesFor(id);
